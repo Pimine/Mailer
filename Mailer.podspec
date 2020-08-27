@@ -1,16 +1,16 @@
 Pod::Spec.new do |s|
 
-  s.name 		         = 'Mailer'
-  s.version 		     = '0.1.0'
+  s.name             = 'Mailer'
+  s.version          = '0.1.0'
   s.summary          = 'Manager for mail clients'
 
   s.description      = 'This framework allows users to send you emails using the most handy mail client for them.'
 
   s.homepage         = 'https://github.com/Pimine/Mailer.git'
-  s.license 		     = { :type => 'MIT', :file => 'LICENSE' }
-  s.authors 		     = { 'Den Andreychuk' => 'denis.andrei4uk@yandex.ua' }
+  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.authors          = { 'Den Andreychuk' => 'denis.andrei4uk@yandex.ua' }
 
-  s.source 		       = { 
+  s.source 	         = { 
     :git => 'https://github.com/Pimine/Mailer.git', 
     :tag => s.version.to_s }
 
