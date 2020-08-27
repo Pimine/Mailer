@@ -27,7 +27,7 @@ import UIKit
 
 struct Alert {
     
-    static public func show(
+    static func show(
         title: String? = "Whoops",
         message: String? = "Something went wrong.",
         handler: (() -> Void)? = nil) {

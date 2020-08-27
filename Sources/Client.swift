@@ -42,7 +42,7 @@ extension Mailer {
         
         // MARK: - Helpers
         
-        var thirdPartyClient: ThirdPartyMailClient? {
+        public var thirdPartyClient: ThirdPartyMailClient? {
             guard
                 let index = Client.allCases.firstIndex(of: self),
                 self != .apple
