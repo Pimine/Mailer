@@ -26,17 +26,21 @@
 import UIKit
 import MessageUI
 
-open class Mailer: NSObject {
+public class Mailer: NSObject {
     
     // MARK: - Properties
     
-    class var application: UIApplication {
+    var application: UIApplication {
         UIApplication.shared
     }
     
+    // MARK: Initialization
+    
+    public let shared = Mailer()
+    
     // MARK: - Helpers
     
-    public static func isClientAvailable(_ client: Client) -> Bool {
+    public func isClientAvailable(_ client: Client) -> Bool {
         switch client {
         case .apple:
             return MFMailComposeViewController.canSendMail()
@@ -48,7 +52,7 @@ open class Mailer: NSObject {
     
     // MARK: - Public API
     
-    public static func sendMail(
+    public func sendMail(
         to recipient: String,
         with subject: String = "",
         body: String = "",
@@ -65,7 +69,7 @@ open class Mailer: NSObject {
     }
     
     
-    public static func sendMail(
+    public func sendMail(
         to recipient: String,
         with subject: String = "",
         body: String = "",
@@ -78,6 +82,7 @@ open class Mailer: NSObject {
         case .apple:
             let controller = MFMailComposeViewController()
             controller.setToRecipients([recipient])
+            controller.mailComposeDelegate = self
             application.topViewController?.present(controller, animated: true)
         default:
             let opened = ThirdPartyMailer.application(
@@ -92,11 +97,11 @@ open class Mailer: NSObject {
     
     // MARK: - Private API
     
-    private static func openClientPicker(recipient: String, subject: String, body: String, clients: [Client]) {
+    private func openClientPicker(recipient: String, subject: String, body: String, clients: [Client]) {
         let clientPicker = UIAlertController(title: "Choose mail app", message: nil, preferredStyle: .actionSheet)
         for client in clients {
             let action = UIAlertAction(title: client.rawValue, style: .default) { _ in
-                sendMail(to: recipient, with: subject, body: body, client: client)
+                self.sendMail(to: recipient, with: subject, body: body, client: client)
             }
             clientPicker.addAction(action)
         }
