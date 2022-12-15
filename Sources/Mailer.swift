@@ -36,7 +36,7 @@ public class Mailer: NSObject {
     
     // MARK: Initialization
     
-    public let shared = Mailer()
+    public static let shared = Mailer()
     
     // MARK: - Helpers
     
