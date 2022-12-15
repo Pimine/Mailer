@@ -26,7 +26,7 @@
 import UIKit
 import MessageUI
 
-open class Mailer {
+open class Mailer: NSObject {
     
     // MARK: - Properties
     
@@ -105,5 +105,16 @@ open class Mailer {
         clientPicker.addAction(cancel)
         
         application.topViewController?.present(clientPicker, animated: true)
+    }
+}
+
+// MARK: - MFMailComposeViewControllerDelegate
+
+extension Mailer: MFMailComposeViewControllerDelegate {
+    public func mailComposeController(
+        _ controller: MFMailComposeViewController,
+        didFinishWith result: MFMailComposeResult, error: Error?
+    ) {
+        controller.dismiss(animated: true)
     }
 }
