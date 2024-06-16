@@ -25,23 +25,24 @@
 
 import Foundation
 
-public protocol MessageProvider {
-    var info: String { get }
-    var cancel: String { get }
-    var somethingWentWrong: String { get }
-    var chooseMailClient: String { get }
-    var noMailClients: String { get }
-    var mailClientNotAvailable: String { get }
-}
+public extension Mailer {
+    protocol MessageProvider {
+        var info: String { get }
+        var cancel: String { get }
+        var somethingWentWrong: String { get }
+        var chooseMailClient: String { get }
+        var noMailClients: String { get }
+        var mailClientNotAvailable: String { get }
+    }
 
-public struct DefaultMessageProvider: MessageProvider {
- 
-    public var info: String = "Info"
-    public var cancel: String = "Cancel"
-    public var somethingWentWrong: String = "Something went wrong. Please try again. If the problem persists, contact support."
-    public var chooseMailClient: String = "Choose mail client"
-    public var noMailClients: String = "There is no available mail clients for this device."
-    public var mailClientNotAvailable: String  = "Mail client not available for this device."
-    
-    public init() { }
+    struct DefaultMessageProvider: MessageProvider {
+        public var info: String = "Info"
+        public var cancel: String = "Cancel"
+        public var somethingWentWrong: String = "Something went wrong. Please try again. If the problem persists, contact support."
+        public var chooseMailClient: String = "Choose mail client"
+        public var noMailClients: String = "There is no available mail clients for this device."
+        public var mailClientNotAvailable: String  = "Mail client not available for this device."
+        
+        public init() { }
+    }
 }
