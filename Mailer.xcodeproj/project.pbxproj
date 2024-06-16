@@ -7,23 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB15FCF22C1F3CDA00BF9BDF /* MessageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB15FCF12C1F3CDA00BF9BDF /* MessageProvider.swift */; };
 		EB4BF69424F828CC00E06156 /* Mailer.h in Headers */ = {isa = PBXBuildFile; fileRef = EB4BF69224F828CC00E06156 /* Mailer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EB4BF6A524F82A4F00E06156 /* Mailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BF6A424F82A4F00E06156 /* Mailer.swift */; };
 		EB4BF6A624F82AAF00E06156 /* ThirdPartyMailClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BF6A024F829CF00E06156 /* ThirdPartyMailClient.swift */; };
 		EB4BF6A724F82AB100E06156 /* ThirdPartyMailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BF6A124F829CF00E06156 /* ThirdPartyMailer.swift */; };
-		EB4BF6A924F82BE700E06156 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BF6A824F82BE700E06156 /* Messages.swift */; };
 		EB4BF6AB24F82C5000E06156 /* Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BF6AA24F82C5000E06156 /* Internal.swift */; };
 		EB4BF6B124F832B100E06156 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BF6B024F832B100E06156 /* Client.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB15FCF12C1F3CDA00BF9BDF /* MessageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageProvider.swift; sourceTree = "<group>"; };
 		EB4BF68F24F828CC00E06156 /* Mailer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mailer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB4BF69224F828CC00E06156 /* Mailer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mailer.h; sourceTree = "<group>"; };
 		EB4BF69324F828CC00E06156 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB4BF6A024F829CF00E06156 /* ThirdPartyMailClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyMailClient.swift; sourceTree = "<group>"; };
 		EB4BF6A124F829CF00E06156 /* ThirdPartyMailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyMailer.swift; sourceTree = "<group>"; };
 		EB4BF6A424F82A4F00E06156 /* Mailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailer.swift; sourceTree = "<group>"; };
-		EB4BF6A824F82BE700E06156 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
 		EB4BF6AA24F82C5000E06156 /* Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Internal.swift; sourceTree = "<group>"; };
 		EB4BF6B024F832B100E06156 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,8 +62,8 @@
 				EB4BF69A24F828EC00E06156 /* Support files */,
 				EB4BF6A424F82A4F00E06156 /* Mailer.swift */,
 				EB4BF6B024F832B100E06156 /* Client.swift */,
-				EB4BF6A824F82BE700E06156 /* Messages.swift */,
 				EB4BF6AA24F82C5000E06156 /* Internal.swift */,
+				EB15FCF12C1F3CDA00BF9BDF /* MessageProvider.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -169,7 +169,7 @@
 				EB4BF6AB24F82C5000E06156 /* Internal.swift in Sources */,
 				EB4BF6A624F82AAF00E06156 /* ThirdPartyMailClient.swift in Sources */,
 				EB4BF6B124F832B100E06156 /* Client.swift in Sources */,
-				EB4BF6A924F82BE700E06156 /* Messages.swift in Sources */,
+				EB15FCF22C1F3CDA00BF9BDF /* MessageProvider.swift in Sources */,
 				EB4BF6A724F82AB100E06156 /* ThirdPartyMailer.swift in Sources */,
 				EB4BF6A524F82A4F00E06156 /* Mailer.swift in Sources */,
 			);

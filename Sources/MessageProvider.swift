@@ -1,5 +1,5 @@
 //
-//  Messages.swift
+//  MessageProvider.swift
 //  https://github.com/Pimine/Mailer
 //
 //  This code is distributed under the terms and conditions of the MIT license.
@@ -25,12 +25,23 @@
 
 import Foundation
 
-extension Mailer {
-    struct Messages {
-        static let tryAgain = "Please try again"
-        static let contactSupport = "If the problem persists, contact support"
-        static let somethingWentWrong = "Something went wrong. \(tryAgain). \(contactSupport)."
-        static let noMailClients = "There is no available mail clients for this device."
-        static let mailClientNotAvailable = "Mail client not available for this device."
-    }
+public protocol MessageProvider {
+    var info: String { get }
+    var cancel: String { get }
+    var somethingWentWrong: String { get }
+    var chooseMailClient: String { get }
+    var noMailClients: String { get }
+    var mailClientNotAvailable: String { get }
+}
+
+public struct DefaultMessageProvider: MessageProvider {
+ 
+    public var info: String = "Info"
+    public var cancel: String = "Cancel"
+    public var somethingWentWrong: String = "Something went wrong. Please try again. If the problem persists, contact support."
+    public var chooseMailClient: String = "Choose mail client"
+    public var noMailClients: String = "There is no available mail clients for this device."
+    public var mailClientNotAvailable: String  = "Mail client not available for this device."
+    
+    public init() { }
 }

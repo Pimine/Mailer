@@ -30,13 +30,17 @@ public class Mailer: NSObject {
     
     // MARK: - Properties
     
+    private let messageProvider: MessageProvider
+    
     var application: UIApplication {
         UIApplication.shared
     }
     
     // MARK: Initialization
     
-    public static let shared = Mailer()
+    public init(messageProvider: MessageProvider = DefaultMessageProvider()) {
+        self.messageProvider = messageProvider
+    }
     
     // MARK: - Helpers
     
@@ -64,7 +68,7 @@ public class Mailer: NSObject {
         } else if availableClients.count > 0 {
             sendMail(to: recipient, with: subject, body: body, client: availableClients[0])
         } else {
-            Alert.show(message: Messages.noMailClients)
+            Alert.show(title: messageProvider.info, message: messageProvider.noMailClients)
         }
     }
     
@@ -76,7 +80,7 @@ public class Mailer: NSObject {
         client: Client
     ) {
         guard isClientAvailable(client) else {
-            return Alert.show(message: Messages.mailClientNotAvailable)
+            return Alert.show(title: messageProvider.info, message: messageProvider.mailClientNotAvailable)
         }
         switch client {
         case .apple:
@@ -91,14 +95,16 @@ public class Mailer: NSObject {
                 recipient: recipient,
                 subject: subject, body: body
             )
-            if !opened { Alert.show(message: Messages.somethingWentWrong) }
+            if !opened {
+                Alert.show(title: messageProvider.info, message: messageProvider.somethingWentWrong)
+            }
         }
     }
     
     // MARK: - Private API
     
     private func openClientPicker(recipient: String, subject: String, body: String, clients: [Client]) {
-        let clientPicker = UIAlertController(title: "Choose mail app", message: nil, preferredStyle: .actionSheet)
+        let clientPicker = UIAlertController(title: messageProvider.cancel, message: nil, preferredStyle: .actionSheet)
         for client in clients {
             let action = UIAlertAction(title: client.rawValue, style: .default) { _ in
                 self.sendMail(to: recipient, with: subject, body: body, client: client)
@@ -106,7 +112,7 @@ public class Mailer: NSObject {
             clientPicker.addAction(action)
         }
         
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancel = UIAlertAction(title: messageProvider.cancel, style: .cancel)
         clientPicker.addAction(cancel)
         
         application.topViewController?.present(clientPicker, animated: true)
