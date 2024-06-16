@@ -104,7 +104,7 @@ public class Mailer: NSObject {
     // MARK: - Private API
     
     private func openClientPicker(recipient: String, subject: String, body: String, clients: [Client]) {
-        let clientPicker = UIAlertController(title: messageProvider.cancel, message: nil, preferredStyle: .actionSheet)
+        let clientPicker = UIAlertController(title: messageProvider.chooseMailClient, message: nil, preferredStyle: .actionSheet)
         for client in clients {
             let action = UIAlertAction(title: client.rawValue, style: .default) { _ in
                 self.sendMail(to: recipient, with: subject, body: body, client: client)
