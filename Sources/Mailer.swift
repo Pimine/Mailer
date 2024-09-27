@@ -77,7 +77,8 @@ public class Mailer: NSObject {
         to recipient: String,
         with subject: String = "",
         body: String = "",
-        client: Client
+        client: Client,
+        completion: ((Bool) -> Void)? = nil
     ) {
         guard isClientAvailable(client) else {
             return Alert.show(title: messageProvider.info, message: messageProvider.mailClientNotAvailable)
@@ -89,14 +90,20 @@ public class Mailer: NSObject {
             controller.mailComposeDelegate = self
             application.topViewController?.present(controller, animated: true)
         default:
-            let opened = ThirdPartyMailer.application(
+            ThirdPartyMailer.application(
                 application,
                 openMailClient: client.thirdPartyClient!,
                 recipient: recipient,
-                subject: subject, body: body
-            )
-            if !opened {
-                Alert.show(title: messageProvider.info, message: messageProvider.somethingWentWrong)
+                subject: subject,
+                body: body
+            ) { opened in
+                if !opened {
+                    Alert.show(
+                        title: self.messageProvider.info,
+                        message: self.messageProvider.somethingWentWrong
+                    )
+                }
+                completion?(opened)
             }
         }
     }

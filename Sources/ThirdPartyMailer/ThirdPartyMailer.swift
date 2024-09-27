@@ -34,7 +34,7 @@ open class ThirdPartyMailer {
 
      - Returns: `true` if the application can open the client; otherwise, `false`.
      */
-    open class func application(_ application: UIApplicationOpenURLProtocol, isMailClientAvailable client: ThirdPartyMailClient) -> Bool {
+    open class func application(_ application: UIApplication, isMailClientAvailable client: ThirdPartyMailClient) -> Bool {
         var components = URLComponents()
         components.scheme = client.URLScheme
 
@@ -53,8 +53,12 @@ open class ThirdPartyMailer {
 
      - Returns: `true` if the application opens the client; otherwise, `false`.
      */
-    open class func application(_ application: UIApplicationOpenURLProtocol, openMailClient client: ThirdPartyMailClient) -> Bool {
-        return application.openURL(client.openURL())
+    open class func application(
+        _ application: UIApplication,
+        openMailClient client: ThirdPartyMailClient,
+        completion: ((Bool) -> Void)?
+    ) {
+        application.open(client.openURL(), options: [:], completionHandler: completion)
     }
     
     /**
@@ -68,34 +72,17 @@ open class ThirdPartyMailer {
 
      - Returns: `true` if the application opens the client; otherwise, `false`.
      */
-    @discardableResult
-    open class func application(_ application: UIApplicationOpenURLProtocol, openMailClient client: ThirdPartyMailClient, recipient: String?, subject: String?, body: String?) -> Bool {
-        return application.openURL(client.composeURL(recipient, subject: subject, body: body))
+    open class func application(
+        _ application: UIApplication,
+        openMailClient client: ThirdPartyMailClient,
+        recipient: String?,
+        subject: String?,
+        body: String?,
+        completion: ((Bool) -> Void)?
+    ) {
+        application.open(
+            client.composeURL(recipient, subject: subject, body: body), options: [:],
+            completionHandler: completion
+        )
     }
 }
-
-/**
- Extension with URL-specific methods for `UIApplication`, or any other object responsible for handling URLs.
- */
-public protocol UIApplicationOpenURLProtocol {
-    /**
-     Returns a Boolean value indicating whether or not the URL’s scheme can be handled by some app installed on the device.
-
-     - Parameters url: A URL (Universal Resource Locator). At runtime, the system tests the URL’s scheme to determine if there is an installed app that is registered to handle the scheme. More than one app can be registered to handle a scheme.
-
-     - Returns: `NO` if there is no app installed on the device that is registered to handle the URL’s scheme, or if you have not declared the URL’s scheme in your `Info.plist` file; otherwise, `YES`.
-     */
-    func canOpenURL(_ url: URL) -> Bool
-
-    /**
-     Attempts to open the resource at the specified URL.
-
-     - Parameters url: The URL to open.
-
-     - Returns: `YES` if the resource located by the URL was successfully opened; otherwise `NO`.
-     */
-    func openURL(_ url: URL) -> Bool
-}
-
-/// Extend `UIApplication` to conform to the `UIApplicationOpenURLProtocol`.
-extension UIApplication: UIApplicationOpenURLProtocol {}
